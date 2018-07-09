@@ -1,9 +1,11 @@
+#!/usr/bin/python3
 import requests
 import json
 # from bs4 import BeautifulSoup
 import re
 import concurrent.futures
 import datetime
+from time import sleep
 
 def urlsParser(url):
     headers = json.loads(r'''{
@@ -20,6 +22,7 @@ def urlsParser(url):
     }''')
 
     resp = requests.get(url, headers=headers)
+    sleep(5)
     html = resp.text
     urls = ['http:' + url for url in re.findall('<a href="(.+?)" class="js-job-link " target="_blank">', html)]
     return urls

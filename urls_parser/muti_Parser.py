@@ -2,18 +2,22 @@
 import concurrent.futures
 import datetime
 from job_urls import urlsParser
+import os
+
 
 def mutiParserUrls(first_url,end_page):
     fus = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=200) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         for page_num in range(1, end_page):
             url = first_url.format(page_num)
             fus.append(executor.submit(urlsParser, url))
 
         for future in concurrent.futures.as_completed(fus):
             print(future.result())
-            with open('./data/urls_' + str(datetime.datetime.now().date()), 'a', encoding='utf8') as f:
+            with open('data/urls_{}.csv'.format(str(datetime.datetime.now().date())),'a', encoding='utf8') as f:
                 for url in future.result():
+                    if 'hunter' in url:continue
+                    if 'tutor' in url:continue
                     f.write(url + '\n')
 
 if __name__ == '__main__':
