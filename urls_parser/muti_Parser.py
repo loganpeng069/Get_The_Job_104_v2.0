@@ -3,7 +3,6 @@ import concurrent.futures
 import datetime
 from job_urls import urlsParser
 
-
 def mutiParserUrls(first_url,end_page):
     fus = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=200) as executor:
@@ -18,6 +17,7 @@ def mutiParserUrls(first_url,end_page):
                     f.write(url + '\n')
 
 if __name__ == '__main__':
+    # test
     first_urls = \
         [
             "https://www.104.com.tw/jobs/search/?ro=1&jobcat=2007000000&kwop=7&keyword=%E8%B3%87%E6%96%99&area=6001001000&order=1&asc=0&page={}&mode=s&jobsource=n104bank1",
