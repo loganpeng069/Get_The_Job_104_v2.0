@@ -33,3 +33,5 @@
 <AMQP is an open messaging specification>
 <RabbitMQ is the most popular implementation (that I know of) of the AMQP specification.>
 <PyAMQP is a Python library that lets Python clients communicate with any implementation of AMQP, including RabbitMQ>
+
+![](https://raw.githubusercontent.com/tkionshao/Get_The_Job_104_v2.0/master/src/figure1.png)
