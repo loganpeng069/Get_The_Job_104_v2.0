@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from pageDetailPaserClass import pageParser
+from pageDetailParserClass import pageParser
 
 if __name__ == '__main__':
     urls = ['https://www.104.com.tw/job/?jobno=601rg&jobsource=pda',

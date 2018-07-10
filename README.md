@@ -10,6 +10,10 @@
 >first_page_factory
 
 ## detail parser
+>main.py<br>
+>pageDetailParserClass.py<br>
+>pageDetailParserClass.pyc<br>
+>my_interview.py<br>
 >TBC<br>
 
 # Docker
