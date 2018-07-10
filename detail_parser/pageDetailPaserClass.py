@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup as bs
 
 class pagePaser:
     url = None
+    url = None
     resp = None
     soup = None
     def __init__(self,url):
@@ -37,16 +38,21 @@ class pagePaser:
         all_tl = ''
         for i in tl:
             all_tl += i.text + ' '
-            print(all_tl,type(i))
+        print(all_tl,type(all_tl))
 
     def get_others(self):
-        #othr = self.soup.findAll("dd")[5]
-        # othr = othrs[5]
         othr = self.soup.select('.content')[1].select('dd')[7].text
-        # othr = re.findall('<dt>其他條件：</dt><dd>.</dd>',self.resp.text.replace('\n',''))
         print(othr,type(othr),len(othr))
         print('-'*20)
-        #print(self.resp.text)
+
+    def printResult(self):
+        self.get_name()
+        self.get_company()
+        self.get_address()
+        self.get_location()
+        self.get_content()
+        self.get_tool()
+        self.get_others()
 
 if __name__ == '__main__':
     urls = ['https://www.104.com.tw/job/?jobno=695ve&jobsource=pda',
