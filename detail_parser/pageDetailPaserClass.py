@@ -3,7 +3,7 @@ import requests
 import re
 from bs4 import BeautifulSoup as bs
 
-class pagePaser:
+class pageParser:
     url = None
     url = None
     resp = None
