@@ -1,6 +1,11 @@
 # Parser Job info. with rabbitmq
 ### Preparation
-
+>cd ./Get_The_Job_v2.0/detail_parser <br>
+>docker build -t python_parser . <br>
+>docker run -it --rm --name parser_runner -v $(pwd):/workdir python_parser /bin/bash
+>[in container] <br>
+>cd /workdir<br>
+>python3 main.py [inputFile] [outputFile.csv]
 
 # Python code
 ## urls parser
