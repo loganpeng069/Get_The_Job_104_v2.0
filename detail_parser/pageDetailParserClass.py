@@ -2,39 +2,40 @@
 import requests
 import re
 from bs4 import BeautifulSoup as bs
-import pandas as pd
+# import pandas as pd
 from time import sleep
+from random import randint
 
 class pageParser:
     def __init__(self,url):
         self.url = url
         self.resp = requests.get(url)
-        sleep(1)
+        sleep(randint(1,10))
         self.soup = bs(self.resp.text.replace('"',''))
 
     def get_name(self):
         name = self.soup.select('h1')[1].text.split('\n')[1].strip()
-        print(name, type(name))
+        #print(name, type(name))
         return name
 
     def get_company(self):
         company = self.soup.select('h1')[1].text.split('\n')[2]
-        print(company, type(company))
+        #print(company, type(company))
         return company
 
     def get_address(self):
         addr = self.soup.select('.addr')[0].text.split('\n')[1].strip()
-        print(addr, type(addr))
+        #print(addr, type(addr))
         return addr
 
     def get_location(self):
         loc = re.findall('var\ jlocation=\[(.+?),(.+?),',self.resp.text)[0]
-        print(loc, type(loc))
+        #print(loc, type(loc))
         return loc
 
     def get_content(self):
         cnt = self.soup.select_one("#job").find("div", {"class": 'content'}).p.text.strip().replace('\r','')
-        print(cnt, type(cnt))
+        #print(cnt, type(cnt))
         return cnt
 
     def get_tool(self):
@@ -42,12 +43,12 @@ class pageParser:
         all_tl = ''
         for i in tl:
             all_tl += i.text + ' '
-        print(all_tl, type(all_tl))
+        #print(all_tl, type(all_tl))
         return all_tl
 
     def get_others(self):
         othr = self.soup.select('.content')[1].select('dd')[7].text.replace('\r',' ')
-        print(othr, type(othr), len(othr))
+        #print(othr, type(othr), len(othr))
         return othr
 
     def printResult(self):
@@ -62,15 +63,24 @@ class pageParser:
 def pageParserCreator(url):
     Page = pageParser(url) # init Page
 
-    name = Page.get_name()
-    com = Page.get_company()
-    addr = Page.get_address()
-    loc = Page.get_location()
-    cnt = Page.get_content()
-    tl = Page.get_tool()
-    othr = Page.get_others()
-    s = pd.Series([name,com,addr,loc,cnt,tl,othr],index=['name','com','addr','loc','cnt','tl','othr'])
-    return s
+    try:
+        name = Page.get_name()
+        com = Page.get_company()
+        addr = Page.get_address()
+        loc = Page.get_location()
+        lat = loc[0]
+        lon = loc[1]
+        cnt = Page.get_content().replace(',',' ')
+        tl = Page.get_tool().replace(',',' ')
+        othr = Page.get_others().replace(',',' ')
+        s = [name, com, addr, lat, lon, cnt, tl, othr]
+        return s
+    except:
+        with open('data/error_1.txt','a',encoding='utf8') as f:
+            f.write(url+'\n')
+        return None
+    finally:
+        Page = None
 
 if __name__ == '__main__':
     urls = ['https://www.104.com.tw/job/?jobno=695ve&jobsource=pda',

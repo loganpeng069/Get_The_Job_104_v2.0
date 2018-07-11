@@ -36,6 +36,14 @@
 <IronMQ is a cloud-based message queue service developed by Iron.io.>
 <AMQP is an open messaging specification>
 <RabbitMQ is the most popular implementation (that I know of) of the AMQP specification.>
-<PyAMQP is a Python library that lets Python clients communicate with any implementation of AMQP, including RabbitMQ>
+<PyAMQP is a Python library that lets Python clients communicate with any implementation of AMQP, including RabbitMQ<>
+br
+
+# Run Python code
+> # In Get_The_Job_v2.0/ <br>
+>cd ./detail_parser <br>
+>python3 main.py [fileIn] [fileout] <br>
+>ex: python3 main.py data/a/error_1.txt data/try_again.csv <br>
+> # Then you could get the result <br>
 
 ![](https://raw.githubusercontent.com/tkionshao/Get_The_Job_104_v2.0/master/src/figure1.png)
