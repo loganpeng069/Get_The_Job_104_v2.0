@@ -1,5 +1,5 @@
 # Parser Job info. with rabbitmq
-### Preparation
+## Step with docker
 >cd ./Get_The_Job_v2.0/detail_parser <br>
 >docker build -t python_parser . <br>
 >docker run -it --rm --name parser_runner -v $(pwd):/workdir python_parser /bin/bash
@@ -45,10 +45,10 @@
 br
 
 # Run Python code
-> # In Get_The_Job_v2.0/ <br>
+> ### In Get_The_Job_v2.0/ <br>
 >cd ./detail_parser <br>
 >python3 main.py [fileIn] [fileout] <br>
 >ex: python3 main.py data/a/error_1.txt data/try_again.csv <br>
-> # Then you could get the result <br>
+> ### Then you could get the result <br>
 
 ![](https://raw.githubusercontent.com/tkionshao/Get_The_Job_104_v2.0/master/src/figure1.png)
