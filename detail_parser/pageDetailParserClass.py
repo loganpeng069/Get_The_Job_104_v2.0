@@ -20,7 +20,7 @@ class pageParser:
         return name
 
     def get_company(self):
-        company = self.soup.select('h1')[1].text.split('\n')[2]
+        company = self.soup.select('h1')[1].text.split('\n')[2].strip()
         #print(company, type(company))
         return company
 
@@ -71,9 +71,9 @@ def pageParserCreator(url):
         loc = Page.get_location()
         lat = loc[0]
         lon = loc[1]
-        cnt = Page.get_content().replace(',',' ')
-        tl = Page.get_tool().replace(',',' ')
-        othr = Page.get_others().replace(',',' ')
+        cnt = Page.get_content().replace(',',' ').replace('\n',' ')
+        tl = Page.get_tool().replace(',',' ').replace('\n',' ')
+        othr = Page.get_others().replace(',',' ').replace('\n',' ')
         s = [name, com, addr, lat, lon, cnt, tl, othr]
         return s
     except:

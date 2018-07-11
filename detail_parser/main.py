@@ -21,7 +21,7 @@ if __name__ == '__main__':
                 if url == '':break
                 print(url)
                 fus.append(executor.submit(pageParserCreator,url))
-                if i == 10:break
+                #if i == 10:break
                 i += 1
                 print(i)
 
