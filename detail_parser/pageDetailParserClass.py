@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 import requests
 import re
+import html5lib
 from bs4 import BeautifulSoup as bs
-# import pandas as pd
 from time import sleep
 from random import randint
+
 
 class pageParser:
     def __init__(self,url):
         self.url = url
         self.resp = requests.get(url)
         sleep(randint(1,10))
-        self.soup = bs(self.resp.text.replace('"',''))
+        self.soup = bs(self.resp.text.replace('"',''),'html5lib')
 
     def get_name(self):
         name = self.soup.select('h1')[1].text.split('\n')[1].strip()
