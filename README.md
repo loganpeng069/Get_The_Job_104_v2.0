@@ -1,4 +1,4 @@
-# Parser Job info. with rabbitmq
+# Parser Job info.
 ## Step with docker
 >cd ./Get_The_Job_v2.0/detail_parser <br>
 >docker build -t python_parser . <br>
